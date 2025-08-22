@@ -15,7 +15,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
         }
 
         h1 {
@@ -28,9 +28,9 @@
         .container {
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             width: 100%;
-            max-width: 1000px;
+            max-width: 1200px;
             flex-wrap: wrap;
             gap: 20px;
             padding: 20px;
@@ -81,7 +81,7 @@
         }
 
         footer {
-            margin-top: 30px;
+            margin: 30px 0;
             font-size: 1rem;
             color: #4dd0e1;
             text-shadow: 0 0 5px #4dd0e1;
@@ -137,6 +137,13 @@
     </div>
 
     <div class="container">
+        <!-- Auto Detected Files Column -->
+        <div class="column">
+            <h2>Auto-Detected HTML Files</h2>
+            <ul id="file-list"><li>Loading...</li></ul>
+        </div>
+
+        <!-- Hardcoded Columns (your original content) -->
         <div class="column">
             <h2>Version 1.8.8</h2>            
             <button class="button" onclick="window.open('https://adsf1234-hacker.github.io/EaglercraftClients/DragonXV5.html', '_blank')">Run DragonXV5 v1 beta</button>
@@ -184,6 +191,37 @@
             const iframeContainer = document.getElementById('iframeContainer');
             iframeContainer.style.display = iframeContainer.style.display === 'none' ? 'block' : 'none';
         }
+
+        // GitHub API integration
+        const user = "unaveragetech";   // 👈 change this
+        const repo = "Eagler-Client-List";         // 👈 change this
+        const branch = "main";                 // or "master"
+
+        async function loadFiles() {
+            try {
+                const res = await fetch(`https://api.github.com/repos/${user}/${repo}/git/trees/${branch}?recursive=1`);
+                const data = await res.json();
+                const list = document.getElementById("file-list");
+                list.innerHTML = "";
+
+                data.tree
+                    .filter(file => file.path.endsWith(".html") && file.path !== "index.html")
+                    .forEach(file => {
+                        const li = document.createElement("li");
+                        const btn = document.createElement("button");
+                        btn.className = "button";
+                        btn.textContent = file.path;
+                        btn.onclick = () => window.open(file.path, "_blank");
+                        li.appendChild(btn);
+                        list.appendChild(li);
+                    });
+            } catch (err) {
+                document.getElementById("file-list").innerHTML = "<li>Failed to load files</li>";
+                console.error(err);
+            }
+        }
+
+        loadFiles();
     </script>
 </body>
 </html>
