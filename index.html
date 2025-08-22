@@ -3,10 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lotus Clans - Eaglercraft</title>
+    <title>Lotus Clans - Samurai Clients</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Noto+Sans+JP:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        @font-face {
+            font-family: 'GlitchyMess';
+            src: url('Glitchymess-Regular (1).otf.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -14,21 +21,29 @@
         }
 
         :root {
-            --bg-primary: #0a0a0a;
-            --bg-secondary: #1a1a1a;
-            --bg-card: rgba(255, 255, 255, 0.02);
-            --border-color: rgba(255, 255, 255, 0.1);
-            --text-primary: #ffffff;
-            --text-secondary: #a0a0a0;
-            --accent-lotus: #ff6b35;
-            --accent-glow: rgba(255, 107, 53, 0.3);
-            --glass-bg: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
+            --bg-primary: #0d0a0a;
+            --bg-secondary: #1a1414;
+            --bg-card: rgba(139, 69, 19, 0.05);
+            --border-color: rgba(205, 133, 63, 0.2);
+            --text-primary: #f5f5dc;
+            --text-secondary: #cd853f;
+            --accent-sakura: #ff69b4;
+            --accent-gold: #ffd700;
+            --accent-red: #dc143c;
+            --accent-glow: rgba(255, 105, 180, 0.3);
+            --glass-bg: rgba(139, 69, 19, 0.1);
+            --glass-border: rgba(205, 133, 63, 0.3);
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg-primary);
+            font-family: 'GlitchyMess', 'Noto Sans JP', sans-serif;
+            background: 
+                linear-gradient(135deg, rgba(13, 10, 10, 0.95) 0%, rgba(26, 15, 15, 0.9) 50%, rgba(13, 10, 10, 0.95) 100%),
+                url('Samurai.jpg') no-repeat center top / cover,
+                url('samurai pose.jpg') no-repeat right bottom / 300px auto,
+                url('images.jfif') no-repeat left center / 200px auto,
+                url('Mulher1.png') no-repeat 80% 70% / 250px auto;
+            background-attachment: fixed, fixed, scroll, scroll, scroll;
             color: var(--text-primary);
             min-height: 100vh;
             overflow-x: hidden;
@@ -44,29 +59,86 @@
             height: 100%;
             background: 
                 radial-gradient(circle at 20% 30%, var(--accent-glow) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(255, 107, 53, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 40% 80%, rgba(255, 107, 53, 0.1) 0%, transparent 50%);
+                radial-gradient(circle at 80% 70%, rgba(220, 20, 60, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%);
             z-index: -1;
-            animation: floatGlow 20s ease-in-out infinite;
+            animation: floatGlow 25s ease-in-out infinite;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="bamboo" x="0" y="0" width="20" height="100" patternUnits="userSpaceOnUse"><rect width="2" height="100" fill="%23cd853f" opacity="0.03"/></pattern></defs><rect width="100" height="100" fill="url(%23bamboo)"/></svg>');
+            z-index: -1;
+            pointer-events: none;
         }
 
         @keyframes floatGlow {
             0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(30px, -20px) scale(1.1); }
-            66% { transform: translate(-20px, 30px) scale(0.9); }
+            33% { transform: translate(20px, -30px) scale(1.05); }
+            66% { transform: translate(-30px, 20px) scale(0.95); }
+        }
+
+        @keyframes backgroundFloat {
+            0%, 100% { transform: translateX(0) translateY(0); }
+            25% { transform: translateX(10px) translateY(-5px); }
+            50% { transform: translateX(5px) translateY(-10px); }
+            75% { transform: translateX(-5px) translateY(-5px); }
+        }
+
+        @keyframes samuraiSway {
+            0%, 100% { transform: rotate(0deg) translateY(0); }
+            50% { transform: rotate(2deg) translateY(-3px); }
         }
 
         .header {
             text-align: center;
             padding: 60px 20px 40px;
             position: relative;
+            border-bottom: 2px solid var(--accent-gold);
+            background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.05), transparent);
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                url('Mulher1.png') no-repeat 15% 20% / 150px auto,
+                url('samurai pose.jpg') no-repeat 85% 30% / 120px auto,
+                url('images.jfif') no-repeat 50% 80% / 80px auto;
+            opacity: 0.3;
+            z-index: 0;
+            animation: backgroundFloat 20s ease-in-out infinite;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            top: 20%;
+            right: 5%;
+            width: 100px;
+            height: 180px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 180"><g opacity="0.12"><ellipse cx="50" cy="170" rx="25" ry="8" fill="%238b4513"/><rect x="45" y="50" width="10" height="120" fill="%23dc143c"/><rect x="40" y="30" width="20" height="40" rx="10" fill="%23fdbcb4"/><circle cx="50" cy="25" r="12" fill="%23fdbcb4"/><circle cx="45" cy="22" r="2" fill="%23000"/><circle cx="55" cy="22" r="2" fill="%23000"/><path d="M45 30 Q50 35 55 30" stroke="%238b0000" stroke-width="1" fill="none"/><rect x="30" y="45" width="40" height="25" rx="5" fill="%234169e1"/><rect x="25" y="35" width="10" height="40" fill="%23fdbcb4"/><rect x="65" y="35" width="10" height="40" fill="%23fdbcb4"/><rect x="35" y="15" width="30" height="10" rx="5" fill="%23000"/><path d="M20 80 L80 80 L85 90 L15 90 Z" fill="%23c0c0c0"/><rect x="45" y="10" width="10" height="80" fill="%23c0c0c0"/></g></svg>') no-repeat center;
+            background-size: contain;
+            z-index: 0;
+            animation: samuraiSway 8s ease-in-out infinite;
         }
 
         .logo {
-            font-family: 'Space Mono', monospace;
+            font-family: 'GlitchyMess', 'Cinzel', serif;
             font-size: clamp(2.5rem, 6vw, 4.5rem);
             font-weight: 700;
-            background: linear-gradient(135deg, var(--accent-lotus), #ff8a50, var(--accent-lotus));
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-sakura), var(--accent-red));
             background-size: 300% 300%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -74,6 +146,33 @@
             animation: gradientShift 4s ease-in-out infinite;
             margin-bottom: 15px;
             text-shadow: 0 0 30px var(--accent-glow);
+            z-index: 2;
+            position: relative;
+        }
+
+        .logo::before {
+            content: '⚔️';
+            position: absolute;
+            left: -60px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.6em;
+            animation: swordGlow 3s ease-in-out infinite;
+        }
+
+        .logo::after {
+            content: '⚔️';
+            position: absolute;
+            right: -60px;
+            top: 50%;
+            transform: translateY(-50%) scaleX(-1);
+            font-size: 0.6em;
+            animation: swordGlow 3s ease-in-out infinite 1.5s;
+        }
+
+        @keyframes swordGlow {
+            0%, 100% { opacity: 0.6; transform: translateY(-50%) scale(1); }
+            50% { opacity: 1; transform: translateY(-50%) scale(1.1); }
         }
 
         @keyframes gradientShift {
@@ -82,11 +181,37 @@
         }
 
         .subtitle {
+            font-family: 'GlitchyMess', 'Noto Sans JP', sans-serif;
             font-size: 1.2rem;
             color: var(--text-secondary);
-            font-weight: 300;
-            letter-spacing: 2px;
+            font-weight: 400;
+            letter-spacing: 3px;
             text-transform: uppercase;
+            position: relative;
+            z-index: 2;
+        }
+
+        .subtitle::before {
+            content: '武士道';
+            display: block;
+            font-size: 0.8rem;
+            color: var(--accent-sakura);
+            margin-bottom: 5px;
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+
+        .subtitle::after {
+            content: '🌸 ⚔️ 🌸';
+            display: block;
+            font-size: 1.2rem;
+            margin-top: 10px;
+            opacity: 0.8;
+            animation: symbolFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes symbolFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
         }
 
         .server-button {
@@ -96,21 +221,42 @@
             padding: 14px 28px;
             background: var(--glass-bg);
             backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 50px;
+            border: 2px solid var(--accent-gold);
+            border-radius: 8px;
             color: var(--text-primary);
             font-weight: 500;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 1001;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            font-family: 'GlitchyMess', 'Noto Sans JP', sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .server-button::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--accent-gold), var(--accent-sakura), var(--accent-red), var(--accent-gold));
+            background-size: 300% 300%;
+            animation: borderGlow 3s ease-in-out infinite;
+            border-radius: 8px;
+            z-index: -1;
+        }
+
+        @keyframes borderGlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
 
         .server-button:hover {
             transform: translateY(-2px);
-            background: rgba(255, 255, 255, 0.08);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
-            border-color: var(--accent-lotus);
+            background: rgba(255, 215, 0, 0.1);
+            box-shadow: 0 12px 40px rgba(255, 215, 0, 0.2);
         }
 
         .container {
@@ -121,13 +267,15 @@
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 30px;
             margin-bottom: 60px;
+            position: relative;
+            z-index: 1;
         }
 
         .column {
             background: var(--glass-bg);
             backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
+            border: 2px solid var(--glass-border);
+            border-radius: 16px;
             padding: 35px;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
@@ -140,31 +288,47 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--accent-lotus), transparent);
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold), var(--accent-sakura), var(--accent-gold), transparent);
             opacity: 0;
             transition: opacity 0.3s ease;
         }
 
+        .column::after {
+            content: '🌸';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.2rem;
+            opacity: 0.3;
+            transition: all 0.3s ease;
+        }
+
         .column:hover {
             transform: translateY(-8px);
-            background: rgba(255, 255, 255, 0.06);
+            background: rgba(139, 69, 19, 0.15);
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-            border-color: rgba(255, 107, 53, 0.3);
+            border-color: var(--accent-gold);
         }
 
         .column:hover::before {
             opacity: 1;
         }
 
+        .column:hover::after {
+            opacity: 1;
+            transform: rotate(10deg) scale(1.2);
+        }
+
         .column h2 {
-            font-family: 'Space Mono', monospace;
+            font-family: 'GlitchyMess', 'Cinzel', serif;
             font-size: 1.5rem;
-            color: var(--accent-lotus);
+            color: var(--accent-gold);
             margin-bottom: 25px;
             text-align: center;
             font-weight: 600;
             position: relative;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .column h2::after {
@@ -173,9 +337,9 @@
             bottom: -8px;
             left: 50%;
             transform: translateX(-50%);
-            width: 40px;
+            width: 60px;
             height: 2px;
-            background: var(--accent-lotus);
+            background: linear-gradient(90deg, var(--accent-gold), var(--accent-sakura), var(--accent-gold));
             border-radius: 2px;
         }
 
@@ -183,9 +347,9 @@
             width: 100%;
             padding: 16px 24px;
             margin: 8px 0;
-            background: var(--bg-secondary);
+            background: linear-gradient(145deg, var(--bg-secondary), rgba(139, 69, 19, 0.1));
             border: 1px solid var(--border-color);
-            border-radius: 12px;
+            border-radius: 8px;
             color: var(--text-primary);
             font-size: 0.95rem;
             font-weight: 500;
@@ -193,6 +357,7 @@
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
+            font-family: 'GlitchyMess', 'Noto Sans JP', sans-serif;
         }
 
         .button::before {
@@ -202,15 +367,16 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.1), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
             transition: left 0.5s ease;
         }
 
         .button:hover {
-            background: rgba(255, 107, 53, 0.1);
-            border-color: var(--accent-lotus);
+            background: linear-gradient(145deg, rgba(255, 215, 0, 0.1), rgba(255, 105, 180, 0.05));
+            border-color: var(--accent-gold);
             transform: translateX(4px);
-            color: var(--accent-lotus);
+            color: var(--accent-gold);
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.2);
         }
 
         .button:hover::before {
@@ -234,6 +400,7 @@
             color: var(--text-secondary);
             font-style: italic;
             padding: 20px;
+            font-family: 'GlitchyMess', sans-serif;
         }
 
         .iframe-container {
@@ -269,18 +436,217 @@
             border-top: 1px solid var(--border-color);
             background: var(--glass-bg);
             backdrop-filter: blur(20px);
+            font-family: 'GlitchyMess', 'Noto Sans JP', sans-serif;
         }
 
         .version-badge {
             display: inline-block;
-            background: rgba(255, 107, 53, 0.2);
-            color: var(--accent-lotus);
+            background: linear-gradient(145deg, var(--accent-sakura), var(--accent-red));
+            color: white;
             padding: 4px 12px;
             border-radius: 20px;
             font-size: 0.8rem;
             font-weight: 600;
             margin-left: 8px;
-            border: 1px solid rgba(255, 107, 53, 0.3);
+            border: 1px solid var(--accent-gold);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+            font-family: 'GlitchyMess', sans-serif;
+        }
+
+        .disclaimer {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 105, 180, 0.05));
+            border: 2px solid var(--accent-gold);
+            border-radius: 16px;
+            padding: 25px;
+            margin: 20px auto;
+            max-width: 1200px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            position: relative;
+            font-family: 'GlitchyMess', 'Noto Sans JP', sans-serif;
+        }
+
+        .disclaimer::before {
+            content: '⚠️ 注意 ⚠️';
+            display: block;
+            font-size: 1.1rem;
+            color: var(--accent-sakura);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .disclaimer h3 {
+            color: var(--accent-gold);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+            font-family: 'GlitchyMess', 'Cinzel', serif;
+        }
+
+        .disclaimer p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-family: 'GlitchyMess', sans-serif;
+        }
+
+        .discord-link {
+            display: inline-block;
+            background: linear-gradient(145deg, #5865f2, #4752c4);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(88, 101, 242, 0.3);
+            border: 2px solid var(--accent-gold);
+            font-family: 'GlitchyMess', sans-serif;
+        }
+
+        .discord-link:hover {
+            background: linear-gradient(145deg, #4752c4, #3c44a6);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(88, 101, 242, 0.4);
+        }
+
+        .discord-link::before {
+            content: '道場 ';
+            font-size: 0.9em;
+        }
+
+        .filter-container {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .filter-input {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            padding: 12px 20px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            width: 100%;
+            max-width: 400px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            font-family: 'GlitchyMess', 'Noto Sans JP', sans-serif;
+        }
+
+        .filter-input:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+        }
+
+        .filter-input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .client-info {
+            display: none;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 10px;
+            border-left: 3px solid var(--accent-gold);
+            backdrop-filter: blur(5px);
+        }
+
+        .client-info.show {
+            display: block;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .client-info h4 {
+            color: var(--accent-gold);
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-family: 'GlitchyMess', 'Cinzel', serif;
+        }
+
+        .client-info p {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            line-height: 1.4;
+            margin-bottom: 8px;
+            font-family: 'GlitchyMess', sans-serif;
+        }
+
+        .client-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 8px;
+        }
+
+        .feature-tag {
+            background: rgba(255, 105, 180, 0.2);
+            color: var(--accent-gold);
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            font-family: 'GlitchyMess', sans-serif;
+        }
+
+        .button-container {
+            position: relative;
+        }
+
+        .button.enhanced {
+            padding-right: 50px;
+        }
+
+        .info-toggle {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 105, 180, 0.2);
+            border: 1px solid var(--accent-gold);
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 0.8rem;
+            color: var(--accent-gold);
+            transition: all 0.3s ease;
+            font-family: 'GlitchyMess', sans-serif;
+        }
+
+        .info-toggle:hover {
+            background: rgba(255, 105, 180, 0.3);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-gold), var(--accent-sakura), var(--accent-red));
+            z-index: 1002;
+            transform-origin: left;
+            transform: scaleX(0);
+            transition: transform 0.1s ease;
         }
 
         @media (max-width: 768px) {
@@ -306,43 +672,111 @@
             }
         }
 
-        .particle {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: var(--accent-lotus);
-            border-radius: 50%;
+        /* Enhanced Cherry Blossom Animation */
+        .petal {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            background: radial-gradient(ellipse at center, var(--accent-sakura) 0%, rgba(255, 105, 180, 0.8) 70%, transparent 100%);
+            border-radius: 50% 0 50% 0;
             pointer-events: none;
+            z-index: 0;
             opacity: 0;
-            animation: float 8s infinite ease-in-out;
+            animation: petalFall 12s linear infinite;
+            transform-origin: center;
         }
 
-        @keyframes float {
+        .petal::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.3) 0%, transparent 50%);
+            border-radius: 50% 0 50% 0;
+        }
+
+        .petal.large {
+            width: 16px;
+            height: 16px;
+            background: radial-gradient(ellipse at center, #ffb6c1 0%, rgba(255, 182, 193, 0.9) 70%, transparent 100%);
+        }
+
+        .petal.small {
+            width: 8px;
+            height: 8px;
+            background: radial-gradient(ellipse at center, #ffc0cb 0%, rgba(255, 192, 203, 0.7) 70%, transparent 100%);
+        }
+
+        @keyframes petalFall {
             0% {
-                transform: translateY(100vh) translateX(0);
+                transform: translateY(-100px) translateX(0) rotate(0deg);
                 opacity: 0;
             }
-            10% {
+            5% {
                 opacity: 1;
             }
-            90% {
-                opacity: 1;
+            95% {
+                opacity: 0.8;
             }
             100% {
-                transform: translateY(-100px) translateX(100px);
+                transform: translateY(100vh) translateX(var(--drift, 200px)) rotate(360deg);
                 opacity: 0;
             }
+        }
+
+        .petal:nth-child(odd) {
+            animation-duration: 15s;
+            background: radial-gradient(ellipse at center, #ffb6c1 0%, rgba(255, 182, 193, 0.8) 70%, transparent 100%);
+        }
+
+        .petal:nth-child(3n) {
+            animation-duration: 10s;
+            transform: scale(0.8);
+        }
+
+        .petal:nth-child(4n) {
+            animation-duration: 18s;
+            transform: scale(1.2);
+        }
+
+        .petal:nth-child(5n) {
+            animation-duration: 14s;
+            background: radial-gradient(ellipse at center, #ff69b4 0%, rgba(255, 105, 180, 0.9) 70%, transparent 100%);
+        }
+
+        /* Wind Effect for Cherry Blossoms */
+        @keyframes windGust {
+            0%, 100% { transform: translateX(0) rotate(0deg); }
+            25% { transform: translateX(30px) rotate(45deg); }
+            50% { transform: translateX(-20px) rotate(-30deg); }
+            75% { transform: translateX(15px) rotate(20deg); }
+        }
+
+        .petal.wind-effect {
+            animation: windGust 3s ease-in-out infinite, petalFall 12s linear infinite;
         }
     </style>
 </head>
 <body>
+    <div class="scroll-indicator" id="scrollIndicator"></div>
+    
     <div class="header">
         <h1 class="logo">LOTUS CLANS</h1>
-        <p class="subtitle">Eaglercraft Gaming Hub</p>
+        <p class="subtitle">Samurai Clients</p>
+    </div>
+
+    <div class="disclaimer">
+        <h3>Safety Bushido Code</h3>
+        <p>These clients are forged by the community and provided with honor. Use with wisdom and ensure you trust the source. Always scan downloads and guard your personal information like a samurai guards their katana.</p>
+        <a href="https://discord.gg/MjMnsGhe8T" target="_blank" class="discord-link">
+            Join Samurai Clan Discord
+        </a>
     </div>
 
     <button class="server-button" onclick="toggleIframe()">
-        <span>🌐 View Servers</span>
+        <span>🏯 View Servers</span>
     </button>
 
     <div class="iframe-container" id="iframeContainer">
@@ -352,6 +786,9 @@
     <div class="container">
         <div class="column">
             <h2>Auto-Detected<span class="version-badge">Dynamic</span></h2>
+            <div class="filter-container">
+                <input type="text" class="filter-input" id="filterInput" placeholder="🔍 Search clients..." />
+            </div>
             <ul id="file-list">
                 <li class="loading">🔄 Loading available clients...</li>
             </ul>
@@ -359,50 +796,397 @@
 
         <div class="column">
             <h2>Version 1.8.8<span class="version-badge">Latest</span></h2>
-            <button class="button" onclick="window.open('https://adsf1234-hacker.github.io/EaglercraftClients/DragonXV5.html', '_blank')">🐉 DragonXV5 v1 beta</button>
-            <button class="button" onclick="window.open('https://adsf1234-hacker.github.io/EaglercraftClients/Starlike_Client_0.3.0_Offline.html', '_blank')">⭐ Starlike 0.3.0</button>
-            <button class="button" onclick="window.open('https://adsf1234-hacker.github.io/EaglercraftClients/kerosone.html', '_blank')">🔥 Kerosone</button>
-            <button class="button" onclick="window.open('https://adsf1234-hacker.github.io/EaglercraftClients/DragonX_V2_International.html', '_blank')">🌍 DragonX V2 International</button>
-            <button class="button" onclick="window.open('https://adsf1234-hacker.github.io/EaglercraftClients/DragonX_V4.html', '_blank')">🐲 DragonX V4</button>
-            <button class="button" onclick="window.open('https://adsf1234-hacker.github.io/EaglercraftClients/dragonXv3.html', '_blank')">🔱 DragonX V3</button>
-            <button class="button" onclick="window.open('https://adsf1234-hacker.github.io/EaglercraftClients/DragonXLite.html', '_blank')">⚡ DragonXLite</button>
-            <button class="button" onclick="window.open('https://adsf1234-hacker.github.io/EaglercraftClients/Eagler-Reborn.html', '_blank')">🦅 Eagler-Reborn</button>
-            <button class="button" onclick="window.open('https://adsf1234-hacker.github.io/EaglercraftClients/shadowclient30beta.html', '_blank')">🌙 ShadowClient 30 Beta</button>
-            <button class="button" onclick="window.open('https://adsf1234-hacker.github.io/EaglercraftClients/eaglercraftx.html', '_blank')">✨ EaglercraftX</button>
-            <button class="button" onclick="window.open('https://adsf1234-hacker.github.io/EaglercraftClients/Eaglerforge.html', '_blank')">⚒️ Eaglerforge</button>
-            <button class="button" onclick="window.open('https://adsf1234-hacker.github.io/EaglercraftClients/Justin%201.2.4.html', '_blank')">👤 Justin Client</button>
-            <button class="button" onclick="window.open('https://adsf1234-hacker.github.io/EaglercraftClients/UwU-client-b2-offline.html', '_blank')">😸 UwUSenseB2 Full</button>
+            <div class="button-container">
+                <button class="button enhanced" onclick="window.open('https://adsf1234-hacker.github.io/EaglercraftClients/DragonXV5.html', '_blank')">🐉 DragonXV5 v1 beta</button>
+                <div class="info-toggle" onclick="toggleInfo(this)">i</div>
+                <div class="client-info">
+                    <h4>DragonXV5 v1 Beta</h4>
+                    <p>Advanced hacked client with comprehensive PvP features and optimization tools.</p>
+                    <div class="client-features">
+                        <span class="feature-tag">KillAura</span>
+                        <span class="feature-tag">Flight</span>
+                        <span class="feature-tag">X-Ray</span>
+                        <span class="feature-tag">Speed</span>
+                    </div>
+                </div>
+            </div>
+            <div class="button-container">
+                <button class="button enhanced" onclick="window.open('https://adsf1234-hacker.github.io/EaglercraftClients/DragonX_V2_International.html', '_blank')">🌍 DragonX V2 International</button>
+                <div class="info-toggle" onclick="toggleInfo(this)">i</div>
+                <div class="client-info">
+                    <h4>DragonX V2 International</h4>
+                    <p>International version with multi-language support and global server compatibility.</p>
+                    <div class="client-features">
+                        <span class="feature-tag">Multi-Lang</span>
+                        <span class="feature-tag">Global Servers</span>
+                        <span class="feature-tag">PvP Mods</span>
+                    </div>
+                </div>
+            </div>
+            <div class="button-container">
+                <button class="button enhanced" onclick="window.open('https://adsf1234-hacker.github.io/EaglercraftClients/DragonX_V4.html', '_blank')">🐲 DragonX V4</button>
+                <div class="info-toggle" onclick="toggleInfo(this)">i</div>
+                <div class="client-info">
+                    <h4>DragonX V4</h4>
+                    <p>Latest DragonX version with enhanced combat features and improved GUI.</p>
+                    <div class="client-features">
+                        <span class="feature-tag">Combat+</span>
+                        <span class="feature-tag">New GUI</span>
+                        <span class="feature-tag">AutoPot</span>
+                        <span class="feature-tag">Criticals</span>
+                    </div>
+                </div>
+            </div>
+            <div class="button-container">
+                <button class="button enhanced" onclick="window.open('https://adsf1234-hacker.github.io/EaglercraftClients/dragonXv3.html', '_blank')">🔱 DragonX V3</button>
+                <div class="info-toggle" onclick="toggleInfo(this)">i</div>
+                <div class="client-info">
+                    <h4>DragonX V3</h4>
+                    <p>Stable version with core hacking features and reliable performance.</p>
+                    <div class="client-features">
+                        <span class="feature-tag">Stable</span>
+                        <span class="feature-tag">Core Hacks</span>
+                        <span class="feature-tag">Reliable</span>
+                    </div>
+                </div>
+            </div>
+            <div class="button-container">
+                <button class="button enhanced" onclick="window.open('https://adsf1234-hacker.github.io/EaglercraftClients/DragonXLite.html', '_blank')">⚡ DragonXLite</button>
+                <div class="info-toggle" onclick="toggleInfo(this)">i</div>
+                <div class="client-info">
+                    <h4>DragonXLite</h4>
+                    <p>Lightweight version optimized for lower-end devices and slower connections.</p>
+                    <div class="client-features">
+                        <span class="feature-tag">Lightweight</span>
+                        <span class="feature-tag">Fast Loading</span>
+                        <span class="feature-tag">Low Resources</span>
+                    </div>
+                </div>
+            </div>
+            <div class="button-container">
+                <button class="button enhanced" onclick="window.open('https://adsf1234-hacker.github.io/EaglercraftClients/Eagler-Reborn.html', '_blank')">🦅 Eagler-Reborn</button>
+                <div class="info-toggle" onclick="toggleInfo(this)">i</div>
+                <div class="client-info">
+                    <h4>Eagler-Reborn</h4>
+                    <p>Community revival of classic Eaglercraft with modern enhancements.</p>
+                    <div class="client-features">
+                        <span class="feature-tag">Community</span>
+                        <span class="feature-tag">Enhanced</span>
+                        <span class="feature-tag">Classic Feel</span>
+                    </div>
+                </div>
+            </div>
+            <div class="button-container">
+                <button class="button enhanced" onclick="window.open('https://adsf1234-hacker.github.io/EaglercraftClients/shadowclient30beta.html', '_blank')">🌙 ShadowClient 30 Beta</button>
+                <div class="info-toggle" onclick="toggleInfo(this)">i</div>
+                <div class="client-info">
+                    <h4>ShadowClient 30 Beta</h4>
+                    <p>Beta version with experimental features and advanced stealth capabilities.</p>
+                    <div class="client-features">
+                        <span class="feature-tag">Beta</span>
+                        <span class="feature-tag">Stealth</span>
+                        <span class="feature-tag">Experimental</span>
+                        <span class="feature-tag">AntiCheat Bypass</span>
+                    </div>
+                </div>
+            </div>
+            <div class="button-container">
+                <button class="button enhanced" onclick="window.open('https://adsf1234-hacker.github.io/EaglercraftClients/eaglercraftx.html', '_blank')">✨ EaglercraftX</button>
+                <div class="info-toggle" onclick="toggleInfo(this)">i</div>
+                <div class="client-info">
+                    <h4>EaglercraftX</h4>
+                    <p>Extended version with additional mods and enhanced multiplayer features.</p>
+                    <div class="client-features">
+                        <span class="feature-tag">Extended</span>
+                        <span class="feature-tag">Multiplayer+</span>
+                        <span class="feature-tag">Extra Mods</span>
+                    </div>
+                </div>
+            </div>
+            <div class="button-container">
+                <button class="button enhanced" onclick="window.open('https://adsf1234-hacker.github.io/EaglercraftClients/Eaglerforge.html', '_blank')">⚒️ Eaglerforge</button>
+                <div class="info-toggle" onclick="toggleInfo(this)">i</div>
+                <div class="client-info">
+                    <h4>Eaglerforge</h4>
+                    <p>Modding platform with forge-like capabilities and extensive customization.</p>
+                    <div class="client-features">
+                        <span class="feature-tag">Modding</span>
+                        <span class="feature-tag">Forge-like</span>
+                        <span class="feature-tag">Customizable</span>
+                        <span class="feature-tag">Plugins</span>
+                    </div>
+                </div>
+            </div>
+            <div class="button-container">
+                <button class="button enhanced" onclick="window.open('https://adsf1234-hacker.github.io/EaglercraftClients/Justin%201.2.4.html', '_blank')">👤 Justin Client</button>
+                <div class="info-toggle" onclick="toggleInfo(this)">i</div>
+                <div class="client-info">
+                    <h4>Justin Client 1.2.4</h4>
+                    <p>Personal client build with custom features and optimized performance.</p>
+                    <div class="client-features">
+                        <span class="feature-tag">Custom</span>
+                        <span class="feature-tag">Optimized</span>
+                        <span class="feature-tag">Personal Build</span>
+                    </div>
+                </div>
+            </div>
+            <div class="button-container">
+                <button class="button enhanced" onclick="window.open('https://adsf1234-hacker.github.io/EaglercraftClients/UwU-client-b2-offline.html', '_blank')">😸 UwUSenseB2 Full</button>
+                <div class="info-toggle" onclick="toggleInfo(this)">i</div>
+                <div class="client-info">
+                    <h4>UwUSenseB2 Full</h4>
+                    <p>Comprehensive client with full feature set and offline capabilities.</p>
+                    <div class="client-features">
+                        <span class="feature-tag">Full Featured</span>
+                        <span class="feature-tag">Offline Mode</span>
+                        <span class="feature-tag">Complete</span>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="column">
             <h2>Version 1.5.2<span class="version-badge">Classic</span></h2>
-            <button class="button" onclick="window.open('https://adsf1234-hacker.github.io/EaglercraftClients/FuschiaX.html', '_blank')">💜 FuschiaX</button>
-            <button class="button" onclick="window.open('https://adsf1234-hacker.github.io/EaglercraftClients/N0VA_CLIENT.html', '_blank')">🌟 N0VA CLIENT</button>
-            <button class="button" onclick="window.open('https://adsf1234-hacker.github.io/EaglercraftClients/Nebula.html', '_blank')">🌌 Nebula</button>
-            <button class="button" onclick="window.open('https://adsf1234-hacker.github.io/EaglercraftClients/NitClient%202.0.html', '_blank')">⚡ NitClient 2.0</button>
-            <button class="button" onclick="window.open('https://adsf1234-hacker.github.io/EaglercraftClients/Oddfuture.html', '_blank')">🔮 Oddfuture</button>
-            <button class="button" onclick="window.open('https://adsf1234-hacker.github.io/EaglercraftClients/nit_client.html', '_blank')">💥 Nit Client</button>
-            <button class="button" onclick="window.open('https://adsf1234-hacker.github.io/EaglercraftClients/PrecisionClient.html', '_blank')">🎯 PrecisionClient</button>
-            <button class="button" onclick="window.open('https://adsf1234-hacker.github.io/EaglercraftClients/ayunami-1.5.html', '_blank')">🌸 Ayuncraft 1.5.2</button>
-            <button class="button" onclick="window.open('https://adsf1234-hacker.github.io/EaglercraftClients/codercraft.html', '_blank')">💻 Codercraft</button>
-            <button class="button" onclick="window.open('https://adsf1234-hacker.github.io/EaglercraftClients/resent.html', '_blank')">🔄 Resent</button>
-            <button class="button" onclick="window.open('https://adsf1234-hacker.github.io/EaglercraftClients/pi-client.html', '_blank')">🥧 Pi Client</button>
+            <div class="button-container">
+                <button class="button enhanced" onclick="window.open('https://adsf1234-hacker.github.io/EaglercraftClients/FuschiaX.html', '_blank')">💜 FuschiaX</button>
+                <div class="info-toggle" onclick="toggleInfo(this)">i</div>
+                <div class="client-info">
+                    <h4>FuschiaX</h4>
+                    <p>Stylish client with purple-themed UI and smooth animations.</p>
+                    <div class="client-features">
+                        <span class="feature-tag">Stylish UI</span>
+                        <span class="feature-tag">Smooth</span>
+                        <span class="feature-tag">Themed</span>
+                    </div>
+                </div>
+            </div>
+            <div class="button-container">
+                <button class="button enhanced" onclick="window.open('https://adsf1234-hacker.github.io/EaglercraftClients/N0VA_CLIENT.html', '_blank')">🌟 N0VA CLIENT</button>
+                <div class="info-toggle" onclick="toggleInfo(this)">i</div>
+                <div class="client-info">
+                    <h4>N0VA CLIENT</h4>
+                    <p>High-performance client with advanced rendering and optimization features.</p>
+                    <div class="client-features">
+                        <span class="feature-tag">High Performance</span>
+                        <span class="feature-tag">Advanced Render</span>
+                        <span class="feature-tag">Optimized</span>
+                    </div>
+                </div>
+            </div>
+            <div class="button-container">
+                <button class="button enhanced" onclick="window.open('https://adsf1234-hacker.github.io/EaglercraftClients/Nebula.html', '_blank')">🌌 Nebula</button>
+                <div class="info-toggle" onclick="toggleInfo(this)">i</div>
+                <div class="client-info">
+                    <h4>Nebula</h4>
+                    <p>Space-themed client with cosmic visuals and stellar performance.</p>
+                    <div class="client-features">
+                        <span class="feature-tag">Space Theme</span>
+                        <span class="feature-tag">Cosmic UI</span>
+                        <span class="feature-tag">Visual Effects</span>
+                    </div>
+                </div>
+            </div>
+            <div class="button-container">
+                <button class="button enhanced" onclick="window.open('https://adsf1234-hacker.github.io/EaglercraftClients/NitClient%202.0.html', '_blank')">⚡ NitClient 2.0</button>
+                <div class="info-toggle" onclick="toggleInfo(this)">i</div>
+                <div class="client-info">
+                    <h4>NitClient 2.0</h4>
+                    <p>Updated version with improved features and better stability.</p>
+                    <div class="client-features">
+                        <span class="feature-tag">Updated</span>
+                        <span class="feature-tag">Stable</span>
+                        <span class="feature-tag">Improved</span>
+                    </div>
+                </div>
+            </div>
+            <div class="button-container">
+                <button class="button enhanced" onclick="window.open('https://adsf1234-hacker.github.io/EaglercraftClients/Oddfuture.html', '_blank')">🔮 Oddfuture</button>
+                <div class="info-toggle" onclick="toggleInfo(this)">i</div>
+                <div class="client-info">
+                    <h4>Oddfuture</h4>
+                    <p>Futuristic client with unique features and modern design elements.</p>
+                    <div class="client-features">
+                        <span class="feature-tag">Futuristic</span>
+                        <span class="feature-tag">Unique</span>
+                        <span class="feature-tag">Modern Design</span>
+                    </div>
+                </div>
+            </div>
+            <div class="button-container">
+                <button class="button enhanced" onclick="window.open('https://adsf1234-hacker.github.io/EaglercraftClients/nit_client.html', '_blank')">💥 Nit Client</button>
+                <div class="info-toggle" onclick="toggleInfo(this)">i</div>
+                <div class="client-info">
+                    <h4>Nit Client</h4>
+                    <p>Original Nit client with essential hacking tools and clean interface.</p>
+                    <div class="client-features">
+                        <span class="feature-tag">Original</span>
+                        <span class="feature-tag">Essential Tools</span>
+                        <span class="feature-tag">Clean</span>
+                    </div>
+                </div>
+            </div>
+            <div class="button-container">
+                <button class="button enhanced" onclick="window.open('https://adsf1234-hacker.github.io/EaglercraftClients/PrecisionClient.html', '_blank')">🎯 PrecisionClient</button>
+                <div class="info-toggle" onclick="toggleInfo(this)">i</div>
+                <div class="client-info">
+                    <h4>PrecisionClient</h4>
+                    <p>Precision-focused client with accurate aim assistance and targeting features.</p>
+                    <div class="client-features">
+                        <span class="feature-tag">Aim Assist</span>
+                        <span class="feature-tag">Precision</span>
+                        <span class="feature-tag">Targeting</span>
+                    </div>
+                </div>
+            </div>
+            <div class="button-container">
+                <button class="button enhanced" onclick="window.open('https://adsf1234-hacker.github.io/EaglercraftClients/ayunami-1.5.html', '_blank')">🌸 Ayuncraft 1.5.2</button>
+                <div class="info-toggle" onclick="toggleInfo(this)">i</div>
+                <div class="client-info">
+                    <h4>Ayuncraft 1.5.2</h4>
+                    <p>Aesthetic client with beautiful visuals and smooth gameplay experience.</p>
+                    <div class="client-features">
+                        <span class="feature-tag">Aesthetic</span>
+                        <span class="feature-tag">Beautiful UI</span>
+                        <span class="feature-tag">Smooth</span>
+                    </div>
+                </div>
+            </div>
+            <div class="button-container">
+                <button class="button enhanced" onclick="window.open('https://adsf1234-hacker.github.io/EaglercraftClients/codercraft.html', '_blank')">💻 Codercraft</button>
+                <div class="info-toggle" onclick="toggleInfo(this)">i</div>
+                <div class="client-info">
+                    <h4>Codercraft</h4>
+                    <p>Developer-oriented client with coding tools and advanced debugging features.</p>
+                    <div class="client-features">
+                        <span class="feature-tag">Developer Tools</span>
+                        <span class="feature-tag">Debug Mode</span>
+                        <span class="feature-tag">Coding</span>
+                    </div>
+                </div>
+            </div>
+            <div class="button-container">
+                <button class="button enhanced" onclick="window.open('https://adsf1234-hacker.github.io/EaglercraftClients/resent.html', '_blank')">🔄 Resent</button>
+                <div class="info-toggle" onclick="toggleInfo(this)">i</div>
+                <div class="client-info">
+                    <h4>Resent</h4>
+                    <p>Popular PvP client with comprehensive combat features and customization options.</p>
+                    <div class="client-features">
+                        <span class="feature-tag">PvP Focused</span>
+                        <span class="feature-tag">Combat Tools</span>
+                        <span class="feature-tag">Customizable</span>
+                        <span class="feature-tag">Popular</span>
+                    </div>
+                </div>
+            </div>
+            <div class="button-container">
+                <button class="button enhanced" onclick="window.open('https://adsf1234-hacker.github.io/EaglercraftClients/pi-client.html', '_blank')">🥧 Pi Client</button>
+                <div class="info-toggle" onclick="toggleInfo(this)">i</div>
+                <div class="client-info">
+                    <h4>Pi Client</h4>
+                    <p>Mathematical-themed client with precise calculations and optimization algorithms.</p>
+                    <div class="client-features">
+                        <span class="feature-tag">Mathematical</span>
+                        <span class="feature-tag">Precise</span>
+                        <span class="feature-tag">Optimized</span>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="column">
             <h2>Other Versions<span class="version-badge">Legacy</span></h2>
-            <button class="button" onclick="window.open('https://adsf1234-hacker.github.io/EaglercraftClients/eag1_9_4.html', '_blank')">🦅 Eagler 1.9.4</button>
-            <button class="button" onclick="window.open('https://adsf1234-hacker.github.io/EaglercraftClients/eagler1.3.html', '_blank')">⚡ Eagler 1.3</button>
-            <button class="button" onclick="window.open('https://adsf1234-hacker.github.io/EaglercraftClients/1.14/1.14.4.html', '_blank')">🆕 Eagler 1.14.4</button>
+            <div class="button-container">
+                <button class="button enhanced" onclick="window.open('https://adsf1234-hacker.github.io/EaglercraftClients/eag1_9_4.html', '_blank')">🦅 Eagler 1.9.4</button>
+                <div class="info-toggle" onclick="toggleInfo(this)">i</div>
+                <div class="client-info">
+                    <h4>Eagler 1.9.4</h4>
+                    <p>Combat update version with dual wielding and improved combat mechanics.</p>
+                    <div class="client-features">
+                        <span class="feature-tag">Combat Update</span>
+                        <span class="feature-tag">Dual Wield</span>
+                        <span class="feature-tag">New Combat</span>
+                    </div>
+                </div>
+            </div>
+            <div class="button-container">
+                <button class="button enhanced" onclick="window.open('https://adsf1234-hacker.github.io/EaglercraftClients/eagler1.3.html', '_blank')">⚡ Eagler 1.3</button>
+                <div class="info-toggle" onclick="toggleInfo(this)">i</div>
+                <div class="client-info">
+                    <h4>Eagler 1.3</h4>
+                    <p>Classic version with redstone updates and fundamental game mechanics.</p>
+                    <div class="client-features">
+                        <span class="feature-tag">Classic</span>
+                        <span class="feature-tag">Redstone</span>
+                        <span class="feature-tag">Fundamental</span>
+                    </div>
+                </div>
+            </div>
+            <div class="button-container">
+                <button class="button enhanced" onclick="window.open('https://adsf1234-hacker.github.io/EaglercraftClients/1.14/1.14.4.html', '_blank')">🆕 Eagler 1.14.4</button>
+                <div class="info-toggle" onclick="toggleInfo(this)">i</div>
+                <div class="client-info">
+                    <h4>Eagler 1.14.4</h4>
+                    <p>Village & Pillage update with new blocks, mobs, and game mechanics.</p>
+                    <div class="client-features">
+                        <span class="feature-tag">Village Update</span>
+                        <span class="feature-tag">New Blocks</span>
+                        <span class="feature-tag">Pillagers</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     <footer class="footer">
-        <p>&copy; 2024 Lotus Clans - Eaglercraft Gaming Hub</p>
-        <p style="margin-top: 8px; font-size: 0.8rem; opacity: 0.7;">Powered by community contributions</p>
+        <p>&copy; 2024 Lotus Clans - Samurai Clients</p>
+        <p style="margin-top: 8px; font-size: 0.8rem; opacity: 0.7;">Forged by the way of the warrior | 武士道</p>
     </footer>
 
     <script>
+        function toggleInfo(button) {
+            const infoDiv = button.nextElementSibling;
+            const isVisible = infoDiv.classList.contains('show');
+            
+            // Hide all other info divs
+            document.querySelectorAll('.client-info.show').forEach(div => {
+                div.classList.remove('show');
+            });
+            
+            // Toggle current info div
+            if (!isVisible) {
+                infoDiv.classList.add('show');
+            }
+        }
+
+        function updateScrollIndicator() {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = scrollTop / docHeight;
+            document.getElementById('scrollIndicator').style.transform = `scaleX(${scrollPercent})`;
+        }
+
+        function filterClients() {
+            const searchTerm = document.getElementById('filterInput').value.toLowerCase();
+            const buttons = document.querySelectorAll('.button');
+            
+            buttons.forEach(button => {
+                const text = button.textContent.toLowerCase();
+                const container = button.closest('.button-container') || button.parentElement;
+                
+                if (text.includes(searchTerm)) {
+                    container.style.display = 'block';
+                    container.style.opacity = '1';
+                    container.style.transform = 'translateY(0)';
+                } else {
+                    container.style.opacity = '0.3';
+                    container.style.transform = 'translateY(-5px)';
+                    if (searchTerm.length > 2) {
+                        container.style.display = 'none';
+                    }
+                }
+            });
+        }
+
         function toggleIframe() {
             const iframeContainer = document.getElementById('iframeContainer');
             const isVisible = iframeContainer.style.display !== 'none';
@@ -457,26 +1241,86 @@
             }
         }
 
-        // Create floating particles
-        function createParticle() {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.left = Math.random() * 100 + 'vw';
-            particle.style.animationDelay = Math.random() * 8 + 's';
-            particle.style.animationDuration = (8 + Math.random() * 4) + 's';
-            document.body.appendChild(particle);
+        // Enhanced petal creation with variety
+        function createPetal() {
+            const petal = document.createElement('div');
+            const petalTypes = ['petal', 'petal large', 'petal small'];
+            const randomType = petalTypes[Math.floor(Math.random() * petalTypes.length)];
+            
+            petal.className = randomType;
+            
+            // Add wind effect randomly
+            if (Math.random() < 0.3) {
+                petal.classList.add('wind-effect');
+            }
+            
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.animationDelay = Math.random() * 3 + 's';
+            petal.style.animationDuration = (10 + Math.random() * 8) + 's';
+            
+            // Enhanced random rotation and drift
+            const randomRotation = Math.random() * 360;
+            const randomDrift = (Math.random() - 0.5) * 600;
+            petal.style.setProperty('--rotation', randomRotation + 'deg');
+            petal.style.setProperty('--drift', randomDrift + 'px');
+            
+            document.body.appendChild(petal);
             
             setTimeout(() => {
-                particle.remove();
-            }, 12000);
+                if (petal.parentNode) {
+                    petal.remove();
+                }
+            }, 20000);
+        }
+
+        // Create cherry blossom wind burst
+        function createWindBurst() {
+            for (let i = 0; i < 8; i++) {
+                setTimeout(() => {
+                    const petal = document.createElement('div');
+                    petal.className = 'petal wind-effect';
+                    petal.style.left = (20 + Math.random() * 60) + 'vw';
+                    petal.style.animationDelay = (i * 0.1) + 's';
+                    
+                    const randomDrift = 300 + Math.random() * 400;
+                    petal.style.setProperty('--drift', randomDrift + 'px');
+                    
+                    document.body.appendChild(petal);
+                    
+                    setTimeout(() => {
+                        if (petal.parentNode) {
+                            petal.remove();
+                        }
+                    }, 15000);
+                }, i * 150);
+            }
+        }
+
+        // Create samurai-themed particles occasionally
+        function createSakuraBurst() {
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => createPetal(), i * 200);
+            }
         }
 
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             loadFiles();
             
-            // Create particles periodically
-            setInterval(createParticle, 2000);
+            // Add scroll indicator
+            window.addEventListener('scroll', updateScrollIndicator);
+            
+            // Add filter functionality
+            document.getElementById('filterInput').addEventListener('input', filterClients);
+            
+            // Create petals periodically with more variety
+            setInterval(createPetal, 600);
+            
+            // Create sakura bursts occasionally
+            setInterval(createSakuraBurst, 15000);
+            
+            // Create wind bursts for dramatic effect
+            setInterval(createWindBurst, 25000);
             
             // Close iframe when clicking outside
             document.getElementById('iframeContainer').addEventListener('click', (e) => {
@@ -488,7 +1332,30 @@
 
         // Add smooth scroll behavior
         document.documentElement.style.scrollBehavior = 'smooth';
+
+        // Add smooth reveal animation for columns
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.column').forEach(column => {
+                column.style.opacity = '0';
+                column.style.transform = 'translateY(20px)';
+                column.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(column);
+            });
+        });
     </script>
 </body>
 </html>
-
