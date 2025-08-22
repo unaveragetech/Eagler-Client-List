@@ -1,1 +1,1 @@
-thing I made in a day for fun
+[KInda stupid but here](https://unaveragetech.github.io/Eagler-Client-List/)
